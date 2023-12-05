@@ -3,9 +3,9 @@ package liquid
 import (
 	"io"
 
-	"github.com/osteele/liquid/filters"
-	"github.com/osteele/liquid/render"
-	"github.com/osteele/liquid/tags"
+	"github.com/patricktran149/liquid/filters"
+	"github.com/patricktran149/liquid/render"
+	"github.com/patricktran149/liquid/tags"
 )
 
 // An Engine parses template source into renderable text.

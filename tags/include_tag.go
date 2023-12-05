@@ -4,7 +4,7 @@ import (
 	"io"
 	"path/filepath"
 
-	"github.com/osteele/liquid/render"
+	"github.com/patricktran149/liquid/render"
 )
 
 func includeTag(source string) (func(io.Writer, render.Context) error, error) {

@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/osteele/liquid/values"
+	"github.com/patricktran149/liquid/values"
 	"github.com/stretchr/testify/require"
 )
 

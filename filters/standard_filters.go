@@ -13,8 +13,8 @@ import (
 	"time"
 	"unicode"
 
-	"github.com/osteele/liquid/values"
 	"github.com/osteele/tuesday"
+	"github.com/patricktran149/liquid/values"
 )
 
 // A FilterDictionary holds filters.

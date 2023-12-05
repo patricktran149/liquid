@@ -3,7 +3,6 @@ module github.com/patricktran149/liquid
 go 1.17
 
 require (
-	github.com/osteele/liquid v1.3.2
 	github.com/osteele/tuesday v1.0.3
 	github.com/stretchr/testify v1.7.0
 	gopkg.in/yaml.v2 v2.4.0
