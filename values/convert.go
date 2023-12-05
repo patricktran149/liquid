@@ -88,6 +88,22 @@ func Convert(value interface{}, typ reflect.Type) (interface{}, error) { // noli
 	if typ == timeType && rv.Kind() == reflect.String {
 		return ParseDate(value.(string))
 	}
+
+	//PHO EDIT HERE
+	if typ == timeType && rv.Kind() == reflect.Int {
+		return ParseDateFromUnix(value.(int))
+	}
+
+	//PHO EDIT HERE
+	if typ == timeType && rv.Kind() == reflect.Int64 {
+		return ParseDateFromUnixInt64(value.(int64))
+	}
+
+	//PHO EDIT HERE
+	if typ == timeType && rv.Kind() == reflect.Float64 {
+		return ParseDateFromUnixFloat64(value.(float64))
+	}
+
 	// currently unused:
 	// case reflect.PtrTo(r.Type()) == typ:
 	// 	return &value, nil

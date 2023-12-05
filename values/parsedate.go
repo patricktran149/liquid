@@ -57,3 +57,18 @@ func ParseDate(s string) (time.Time, error) {
 	}
 	return zeroTime, conversionError("", s, reflect.TypeOf(zeroTime))
 }
+
+// PHO ADD FUNCTION HERE
+func ParseDateFromUnix(i int) (time.Time, error) {
+	return time.Unix(int64(i), 0), nil
+}
+
+// PHO ADD FUNCTION HERE
+func ParseDateFromUnixInt64(i int64) (time.Time, error) {
+	return time.Unix(i, 0), nil
+}
+
+// PHO ADD FUNCTION HERE
+func ParseDateFromUnixFloat64(f float64) (time.Time, error) {
+	return time.Unix(int64(f), 0), nil
+}
