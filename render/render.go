@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"io"
 	"reflect"
+	"strconv"
+	"strings"
 	"time"
 
 	"github.com/patricktran149/liquid/values"
@@ -128,6 +130,23 @@ func writeObject(w io.Writer, value interface{}) error {
 		return nil
 	case reflect.Ptr:
 		return writeObject(w, reflect.ValueOf(value).Elem())
+	case reflect.Float32, reflect.Float64: // PHO EDIT
+		v := fmt.Sprintf("%f", value)
+
+		split := strings.Split(v, ".")
+		if len(split) == 2 {
+			f, err := strconv.ParseFloat(split[1], 64)
+			if err != nil {
+				return err
+			}
+
+			if f == 0 {
+				v = fmt.Sprintf("%.0f", value)
+			}
+		}
+
+		_, err := io.WriteString(w, v)
+		return err
 	default:
 		_, err := io.WriteString(w, fmt.Sprint(value))
 		return err

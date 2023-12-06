@@ -2,6 +2,12 @@
 package filters
 
 import (
+	"crypto/md5"
+	"crypto/sha1"
+	"crypto/sha256"
+	"crypto/sha512"
+	"encoding/base64"
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"html"
@@ -216,6 +222,47 @@ func AddStandardFilters(fd FilterDictionary) { // nolint: gocyclo
 	})
 	fd.AddFilter("type", func(value interface{}) string {
 		return fmt.Sprintf("%T", value)
+	})
+
+	//Add md5 hex filters -- Pho
+	fd.AddFilter("md5Hex", func(value string) string {
+		hash := md5.Sum([]byte(value))
+		return hex.EncodeToString(hash[:])
+	})
+
+	//Add md5 base64 filters -- Pho
+	fd.AddFilter("md5Base64", func(value string) string {
+		hash := md5.Sum([]byte(value))
+		return base64.StdEncoding.EncodeToString(hash[:])
+	})
+
+	//Add base64 encode filters -- Pho
+	fd.AddFilter("base64", func(value string) string {
+		return base64.StdEncoding.EncodeToString([]byte(value))
+	})
+
+	//Add sha1 encode filters -- Pho
+	fd.AddFilter("sha1", func(value string) string {
+		hash := sha1.Sum([]byte(value))
+		return hex.EncodeToString(hash[:])
+	})
+
+	//Add sha256 encode filters -- Pho
+	fd.AddFilter("sha256", func(value string) string {
+		hash := sha256.Sum256([]byte(value))
+		return hex.EncodeToString(hash[:])
+	})
+
+	//Add sha384 encode filters -- Pho
+	fd.AddFilter("sha384", func(value string) string {
+		hash := sha512.Sum384([]byte(value))
+		return hex.EncodeToString(hash[:])
+	})
+
+	//Add sha512 encode filters -- Pho
+	fd.AddFilter("sha512", func(value string) string {
+		hash := sha512.Sum512([]byte(value))
+		return hex.EncodeToString(hash[:])
 	})
 }
 
