@@ -237,8 +237,17 @@ func AddStandardFilters(fd FilterDictionary) { // nolint: gocyclo
 	})
 
 	//Add base64 encode filters -- Pho
-	fd.AddFilter("base64", func(value string) string {
+	fd.AddFilter("base64_encode", func(value string) string {
 		return base64.StdEncoding.EncodeToString([]byte(value))
+	})
+
+	//Add base64 encode filters -- Pho
+	fd.AddFilter("base64_decode", func(value string) (string, error) {
+		decoded, err := base64.StdEncoding.DecodeString(value)
+		if err != nil {
+			return "", err
+		}
+		return string(decoded), nil
 	})
 
 	//Add sha1 encode filters -- Pho
