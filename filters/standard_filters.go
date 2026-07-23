@@ -160,6 +160,18 @@ func AddStandardFilters(fd FilterDictionary) { // nolint: gocyclo
 	fd.AddFilter("replace_first", func(s, old, new string) string {
 		return strings.Replace(s, old, new, 1)
 	})
+	fd.AddFilter("replace_last", func(s, old, new string) string {
+		if old == "" {
+			return s
+		}
+
+		idx := strings.LastIndex(s, old)
+		if idx == -1 {
+			return s
+		}
+
+		return s[:idx] + new + s[idx+len(old):]
+	})
 	fd.AddFilter("sort_natural", sortNaturalFilter)
 	fd.AddFilter("slice", func(s string, start int, length func(int) int) string {
 		ss := []rune(s)
